@@ -1,0 +1,25 @@
+.input {
+    padding: 10px;
+    border-radius: 5px;
+    border: red 1px solid;
+    width: 300px;
+}
+
+.btn1,
+.btn2,
+.btn3 {
+    border: none;
+    margin-right: 5px;
+    padding: 5px 20px;
+    border-radius: 4px;
+}
+
+.btn2 {
+    background-color: orange;
+    color: white;
+}
+
+.btn3 {
+    background-color: red;
+    color: white;
+}
