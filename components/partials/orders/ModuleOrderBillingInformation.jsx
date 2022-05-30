@@ -35,9 +35,9 @@ const ModuleOrderBillingInformation = () => {
         <td>
           <strong>{item.id}</strong>
         </td>
-        <td>
+        {/* <td>
           <img src={item.imgUrl} alt='img' />
-        </td>
+        </td> */}
 
         <td>
           <strong>{item.title}</strong>
