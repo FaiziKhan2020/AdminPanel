@@ -100,9 +100,9 @@ const TableOrdersItems = () => {
             <button className={Style.btn2} onClick={() => send(item.id)}>
               View Detail
             </button>
-            <button className={Style.btn3} onClick={() => orderDelete(item.id)}>
+            {/* <button className={Style.btn3} onClick={() => orderDelete(item.id)}>
               Delete order
-            </button>
+            </button> */}
           </td>
 
           <td>
