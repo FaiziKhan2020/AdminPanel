@@ -4,8 +4,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import style from "./style.module.css";
 import Spinner from "~/components/spinner/Spinner";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const TableProjectItems = () => {
+  const Router = useRouter();
+  const { id } = Router.query;
+
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +36,14 @@ const TableProjectItems = () => {
     );
     console.log(id);
   };
+  // const update = (e) => {
+  //   Router.push({
+  //     pathname: "/products/update-product/",
+  //     query: {
+  //       e,
+  //     },
+  //   });
+  // };
 
   const tableItems = loading ? (
     data
@@ -79,6 +92,22 @@ const TableProjectItems = () => {
                 Delete
               </button>
             </td>
+            <td>
+              <Link href={`/products/` + item.id}>
+                <button
+                  style={{
+                    backgroundColor: "purple",
+                    color: "white",
+                    border: "none",
+                    padding: "5px 10px",
+                    borderRadius: "5px",
+                  }}
+                  // onClick={() => update(item.id)}
+                >
+                  update
+                </button>
+              </Link>
+            </td>
           </tr>
         );
       })
@@ -107,6 +136,7 @@ const TableProjectItems = () => {
                   <th>Price</th>
                   <th>CategoryID</th>
                   <th>Delete product</th>
+                  <th>Update Product</th>
                 </tr>
               </thead>
               <tbody>{tableItems}</tbody>
