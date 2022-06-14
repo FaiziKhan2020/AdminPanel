@@ -32,6 +32,12 @@ const CreateProductPage = () => {
         "https://dawoodddocker.herokuapp.com/api/v1/product/post",
         body
       );
+
+      if (res.data.success) {
+        Router.push({
+          pathname: "/products",
+        });
+      }
       console.log("CBM", { res });
     } catch (error) {
       console.log("CBM", { error });
