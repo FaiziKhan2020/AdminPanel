@@ -35,9 +35,10 @@ const TableProjectItems = () => {
       `https://dawoodddocker.herokuapp.com/api/v1/product/delete/${id}`
     );
     console.log(id);
-    Router.push({
-      pathname: "/products",
-    });
+    window.location.reload();
+    // Router.push({
+    //   pathname: "/products",
+    // });
   };
   // const update = (e) => {
   //   Router.push({
