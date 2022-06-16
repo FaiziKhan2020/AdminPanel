@@ -35,12 +35,13 @@ const ModuleOrderBillingInformation = () => {
         <td>
           <strong>{item.id}</strong>
         </td>
-        {/* <td>
-          <img src={item.imgUrl} alt='img' />
-        </td> */}
 
         <td>
           <strong>{item.title}</strong>
+        </td>
+
+        <td>
+          <img src={item.imgUrl} alt='product-img' width={100} />
         </td>
 
         <td>
@@ -69,6 +70,9 @@ const ModuleOrderBillingInformation = () => {
             </th>
             <th>
               <strong>Title</strong>
+            </th>{" "}
+            <th>
+              <strong>Product Image</strong>
             </th>
             <th>
               <strong>Quantity</strong>
