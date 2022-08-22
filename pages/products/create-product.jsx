@@ -43,7 +43,35 @@ const CreateProductPage = () => {
       console.log("CBM", { error });
     }
   };
+  const [data, setData] = useState([]);
+  const router = useRouter();
+  const {
+      query: { e },
+  } = router;
 
+  useEffect(() => {
+      const fetchBags = async () => {
+          try {
+              const data = await Axios.get(
+                  `https://dawoodddocker.herokuapp.com/api/v1/product/id/84`
+              );
+              console.log(data)
+              setData(data.data.data);
+              setLoading(true);
+          } catch (error) {
+              console.log(error);
+          }
+      };
+      fetchBags();
+  }, []);
+  const send = (e) => {
+      Router.push({
+          pathname: '/grocery/dairy/filter',
+          query: {
+              e,
+          },
+      });
+  };
   return (
     <ContainerDefault title='Create new product'>
       <section className='ps-new-item'>
@@ -203,11 +231,33 @@ const CreateProductPage = () => {
                           },
                         ]}
                       >
-                        <Input
-                          className='form-control'
-                          type='postalCode'
-                          placeholder='Enter CategoryId'
-                        />
+                          <div class="dropdown show">
+                                <a
+                                    class="btn btn-secondary dropdown-toggle"
+                                    href="#"
+                                    role="button"
+                                    id="dropdownMenuLink"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Filters
+                                </a>
+                                <div className="mb-4 ">
+                                    <div
+                                        class="dropdown-menu"
+                              
+                                        aria-labelledby="dropdownMenuLink">
+                                        
+                                        {data.Dairy.map((item, index) => (
+                            <a class="dropdown-item" onClick={() => send(item.send)} >
+                              {item.title}
+                            </a>
+                            
+                            ))}
+                                     
+                                    </div>
+                                </div>
+                            </div>
                       </Form.Item>
                     </div>
                   </div>

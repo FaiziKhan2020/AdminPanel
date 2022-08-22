@@ -22,8 +22,8 @@ const FormCreateCategory = () => {
 
         try {
             const res = await axios.post(
-                // 'https://dawoodbackend.herokuapp.com/api/v1/Category/post',
-                'http://localhost:8080/api/v1/Category/post',
+                'https://dawoodbackend.herokuapp.com/api/v1/Category/post',
+                // 'http://localhost:8080/api/v1/Category/post',
                 body
             );
             console.log('CBM', { res });
