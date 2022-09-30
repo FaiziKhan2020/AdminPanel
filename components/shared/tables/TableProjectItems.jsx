@@ -6,7 +6,7 @@ import style from "./style.module.css";
 import Spinner from "~/components/spinner/Spinner";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import Pagination from "~/pages/products/Pagination";
 const TableProjectItems = () => {
   const Router = useRouter();
   const { id } = Router.query;
@@ -15,6 +15,30 @@ const TableProjectItems = () => {
   const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState([]);
+  // * Pgination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(300);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const data = await Axios.get(`http://localhost:5000/users`);
+        setData(data.data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProducts();
+  }, []);
+  // * Get current Product Page
+  const indexOfLastPage = currentPage * productPerPage;
+  const indexOfFirstPage = indexOfLastPage - productPerPage;
+  const currentPosts = data.slice(indexOfFirstPage, indexOfLastPage);
+
+  // * Change current Product Page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     const fetchBags = async () => {
       try {
@@ -50,7 +74,7 @@ const TableProjectItems = () => {
   // };
 
   const tableItems = loading ? (
-    data
+    currentPosts
       .filter((item) => {
         if (searchTerm == "") {
           return item;
@@ -147,6 +171,13 @@ const TableProjectItems = () => {
             </table>
           </div>
         </div>
+      </div>
+      <div className='ml-auto my-4 mr-4'>
+        <Pagination
+          productPerPage={productPerPage}
+          totalProduct={data.length}
+          paginate={paginate}
+        />
       </div>
     </>
   );

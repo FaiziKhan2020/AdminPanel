@@ -33,10 +33,10 @@ const ProductPage = () => {
         <div className='ps-section__content'>
           <TableProjectItems />
         </div>
-        <div className='ps-section__footer'>
+        {/* <div className='ps-section__footer'>
           <p>Show 10 in 30 items.</p>
           <Pagination />
-        </div>
+        </div> */}
       </section>
     </ContainerDefault>
   );
