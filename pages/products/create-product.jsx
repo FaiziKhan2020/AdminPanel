@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
-// import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
-// import { connect, useDispatch } from "react-redux";
-// import { toggleDrawerMenu } from "~/store/app/action";
-// import React, { Component } from 'react';
-// import Link from "next/link";
 import Router from "next/router";
 import { Form, Input } from "antd";
-// import { useCart } from "react-use-cart";
-import axios from "axios";
+import Axios from "axios";
+import { useRouter } from "next/router";
 const CreateProductPage = () => {
   const handleLoginSubmit = async (data) => {
     const body = {
@@ -21,14 +16,10 @@ const CreateProductPage = () => {
       price: data.price,
       imgUrl: data.imgUrl,
       CategoryId: data.CategoryId,
-
-      // items: items.map((item) => parseInt(item.id)),
     };
 
     try {
       const res = await axios.post(
-        // 'https://dawoodbackend.herokuapp.com/api/v1/order/',
-        // 'http://localhost:8080/api/v1/product/',
         "https://dawoodddocker.herokuapp.com/api/v1/product/post",
         body
       );
@@ -46,31 +37,31 @@ const CreateProductPage = () => {
   const [data, setData] = useState([]);
   const router = useRouter();
   const {
-      query: { e },
+    query: { e },
   } = router;
 
   useEffect(() => {
-      const fetchBags = async () => {
-          try {
-              const data = await Axios.get(
-                  `https://dawoodddocker.herokuapp.com/api/v1/product/id/84`
-              );
-              console.log(data)
-              setData(data.data.data);
-              setLoading(true);
-          } catch (error) {
-              console.log(error);
-          }
-      };
-      fetchBags();
+    const fetchBags = async () => {
+      try {
+        const data = await Axios.get(
+          `https://dawoodddocker.herokuapp.com/api/v1/product/id/84`
+        );
+        console.log(data);
+        setData(data.data.data);
+        setLoading(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBags();
   }, []);
   const send = (e) => {
-      Router.push({
-          pathname: '/grocery/dairy/filter',
-          query: {
-              e,
-          },
-      });
+    Router.push({
+      pathname: "/grocery/dairy/filter",
+      query: {
+        e,
+      },
+    });
   };
   return (
     <ContainerDefault title='Create new product'>
@@ -231,33 +222,34 @@ const CreateProductPage = () => {
                           },
                         ]}
                       >
-                          <div class="dropdown show">
+                        <div class='dropdown show'>
+                          <a
+                            class='btn btn-secondary dropdown-toggle'
+                            href='#'
+                            role='button'
+                            id='dropdownMenuLink'
+                            data-toggle='dropdown'
+                            aria-haspopup='true'
+                            aria-expanded='false'
+                          >
+                            Filters
+                          </a>
+                          <div className='mb-4 '>
+                            <div
+                              class='dropdown-menu'
+                              aria-labelledby='dropdownMenuLink'
+                            >
+                              {data.Dairy.map((item, index) => (
                                 <a
-                                    class="btn btn-secondary dropdown-toggle"
-                                    href="#"
-                                    role="button"
-                                    id="dropdownMenuLink"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Filters
+                                  class='dropdown-item'
+                                  onClick={() => send(item.send)}
+                                >
+                                  {item.title}
                                 </a>
-                                <div className="mb-4 ">
-                                    <div
-                                        class="dropdown-menu"
-                              
-                                        aria-labelledby="dropdownMenuLink">
-                                        
-                                        {data.Dairy.map((item, index) => (
-                            <a class="dropdown-item" onClick={() => send(item.send)} >
-                              {item.title}
-                            </a>
-                            
-                            ))}
-                                     
-                                    </div>
-                                </div>
+                              ))}
                             </div>
+                          </div>
+                        </div>
                       </Form.Item>
                     </div>
                   </div>
