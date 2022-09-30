@@ -60,18 +60,7 @@ const TableProjectItems = () => {
     );
     console.log(id);
     window.location.reload();
-    // Router.push({
-    //   pathname: "/products",
-    // });
   };
-  // const update = (e) => {
-  //   Router.push({
-  //     pathname: "/products/update-product/",
-  //     query: {
-  //       e,
-  //     },
-  //   });
-  // };
 
   const tableItems = loading ? (
     currentPosts
