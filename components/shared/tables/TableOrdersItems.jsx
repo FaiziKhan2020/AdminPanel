@@ -7,10 +7,13 @@ import { useEffect } from "react";
 import Router from "next/router";
 import Style from "./style.module.css";
 import Spinner from "~/components/spinner/Spinner";
-
+import Pagination from "~/pages/products/Pagination";
 const TableOrdersItems = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  // * Pgination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(30);
 
   useEffect(() => {
     const fetchBags = async () => {
@@ -26,6 +29,14 @@ const TableOrdersItems = () => {
     };
     fetchBags();
   }, []);
+
+  // * Get current Product Page
+  const indexOfLastPage = currentPage * productPerPage;
+  const indexOfFirstPage = indexOfLastPage - productPerPage;
+  const currentPosts = data.slice(indexOfFirstPage, indexOfLastPage);
+
+  // * Change current Product Page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const postDelete = (id) => {
     let data = Axios.get(
@@ -52,7 +63,7 @@ const TableOrdersItems = () => {
   };
 
   const tableItemsView = loading ? (
-    data.map((item) => {
+    currentPosts.map((item) => {
       let badgeView, fullfillmentView;
       const menuView = (
         <Menu>
@@ -123,20 +134,29 @@ const TableOrdersItems = () => {
     <Spinner />
   );
   return (
-    <div className='table-responsive'>
-      <table className='table ps-table'>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>CreatedAt</th>
-            <th>Total</th>
-            <th>Subtotal</th>
-            <th>Contact Info</th>
-          </tr>
-        </thead>
-        <tbody>{tableItemsView}</tbody>
-      </table>
-    </div>
+    <>
+      <div className='table-responsive'>
+        <table className='table ps-table'>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>CreatedAt</th>
+              <th>Total</th>
+              <th>Subtotal</th>
+              <th>Contact Info</th>
+            </tr>
+          </thead>
+          <tbody>{tableItemsView}</tbody>
+        </table>
+      </div>
+      <div className='ml-auto my-4 mr-4'>
+        <Pagination
+          productPerPage={productPerPage}
+          totalProduct={data.length}
+          paginate={paginate}
+        />
+      </div>
+    </>
   );
 };
 

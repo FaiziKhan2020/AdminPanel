@@ -17,28 +17,7 @@ const TableProjectItems = () => {
   const [data, setData] = useState([]);
   // * Pgination
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(300);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const data = await Axios.get(`http://localhost:5000/users`);
-        setData(data.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchProducts();
-  }, []);
-  // * Get current Product Page
-  const indexOfLastPage = currentPage * productPerPage;
-  const indexOfFirstPage = indexOfLastPage - productPerPage;
-  const currentPosts = data.slice(indexOfFirstPage, indexOfLastPage);
-
-  // * Change current Product Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const [productPerPage, setProductPerPage] = useState(250);
   useEffect(() => {
     const fetchBags = async () => {
       try {
@@ -53,6 +32,13 @@ const TableProjectItems = () => {
     };
     fetchBags();
   }, []);
+  // * Get current Product Page
+  const indexOfLastPage = currentPage * productPerPage;
+  const indexOfFirstPage = indexOfLastPage - productPerPage;
+  const currentPosts = data.slice(indexOfFirstPage, indexOfLastPage);
+
+  // * Change current Product Page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const postDelete = async (id) => {
     await Axios.delete(
