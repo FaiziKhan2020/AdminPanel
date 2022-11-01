@@ -18,9 +18,7 @@ const TableOrdersItems = () => {
   useEffect(() => {
     const fetchBags = async () => {
       try {
-        const data = await Axios.get(
-          `https://dawoodddocker.herokuapp.com/api/v1/order`
-        );
+        const data = await Axios.get(`http://localhost:8080/api/v1/order/`);
         setData(data.data.data);
         setLoading(true);
       } catch (error) {
@@ -108,12 +106,6 @@ const TableOrdersItems = () => {
             <button className={Style.btn1} onClick={() => send(item.id)}>
               {item.id}
             </button>
-            <button className={Style.btn2} onClick={() => send(item.id)}>
-              View Detail
-            </button>
-            {/* <button className={Style.btn3} onClick={() => orderDelete(item.id)}>
-              Delete order
-            </button> */}
           </td>
 
           <td>
@@ -125,7 +117,24 @@ const TableOrdersItems = () => {
           <td>
             <strong>{item.subTotal}</strong>
           </td>
-          <td>{item.contactInfo}</td>
+          <td>
+            <button
+              style={{
+                backgroundColor: "purple",
+                color: "white",
+                border: "none",
+                padding: "5px 10px",
+                borderRadius: "5px",
+                marginRight:'20px'
+              }}
+              onClick={() => send(item.id)}
+            >
+              View Detail
+            </button>
+            <button className={Style.btn3} onClick={() => orderDelete(item.id)}>
+              Delete order
+            </button>
+          </td>
           <td></td>
         </tr>
       );
@@ -143,7 +152,6 @@ const TableOrdersItems = () => {
               <th>CreatedAt</th>
               <th>Total</th>
               <th>Subtotal</th>
-              <th>Contact Info</th>
             </tr>
           </thead>
           <tbody>{tableItemsView}</tbody>

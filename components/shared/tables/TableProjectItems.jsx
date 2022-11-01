@@ -22,8 +22,10 @@ const TableProjectItems = () => {
     const fetchBags = async () => {
       try {
         const data = await Axios.get(
-          `https://dawoodddocker.herokuapp.com/api/v1/product`
+          // `https://dawoodddocker.herokuapp.com/api/v1/product`
+          `http://localhost:8080/api/v1/product/`
         );
+        console.log(data.data.data)
         setData(data.data.data);
         setLoading(true);
       } catch (error) {

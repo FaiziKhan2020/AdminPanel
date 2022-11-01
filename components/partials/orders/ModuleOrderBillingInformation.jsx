@@ -18,10 +18,7 @@ const ModuleOrderBillingInformation = () => {
   const fetchBags = async () => {
     try {
       const data = await Axios.get(
-        // `http://localhost:8082/api/v1/product`
-        // `https://dawoodbackend.herokuapp.com/api/v1/product/id/5`
-        // `http://localhost:8080/api/v1/order/orderItem/${e}`
-        `https://dawoodddocker.herokuapp.com/api/v1/order/orderItem/${e}`
+        `http://localhost:8080/api/v1/order/orderItem/${e}`
       );
       setData(data.data.data);
     } catch (error) {
@@ -39,9 +36,15 @@ const ModuleOrderBillingInformation = () => {
         <td>
           <strong>{item.title}</strong>
         </td>
+        <td>
+          <strong>{item.size || "Not selected"}</strong>
+        </td>
+        <td>
+          <strong>{item.color || "Not selected"}</strong>
+        </td>
 
         <td>
-          <img src={item.imgUrl} alt='product-img' width={100} />
+          <img src={item.imgUrl} alt="product-img" width={100} />
         </td>
 
         <td>
@@ -61,8 +64,8 @@ const ModuleOrderBillingInformation = () => {
     );
   });
   return (
-    <div className='table-responsive'>
-      <table className='table ps-table'>
+    <div className="table-responsive">
+      <table className="table ps-table">
         <thead>
           <tr>
             <th>
@@ -71,6 +74,12 @@ const ModuleOrderBillingInformation = () => {
             <th>
               <strong>Title</strong>
             </th>{" "}
+            <th>
+              <storng>Size</storng>
+            </th>
+            <th>
+              <storng>Color</storng>
+            </th>
             <th>
               <strong>Product Image</strong>
             </th>

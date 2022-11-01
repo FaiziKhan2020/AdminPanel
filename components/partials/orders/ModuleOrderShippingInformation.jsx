@@ -19,10 +19,7 @@ const ModuleOrderShippingInformation = () => {
         const fetchBags = async () => {
             try {
                 const data = await Axios.get(
-                    // `http://localhost:8082/api/v1/product`
-                    // `https://dawoodbackend.herokuapp.com/api/v1/product/id/5`
-                    // `http://localhost:8080/api/v1/order/id/${e}`
-                    `https://dawoodddocker.herokuapp.com/api/v1/order/id/${e}`
+                  `http://localhost:8080/api/v1/order/id/${e}`
                 );
                 setData(data.data.data);
             } catch (error) {

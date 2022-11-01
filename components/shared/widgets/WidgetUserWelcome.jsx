@@ -8,7 +8,7 @@ const WidgetUserWelcome = () => {
 			</div>
 			<div className="ps-block__right">
 				<p>
-					Hello,<a href="#">Dawood Store</a>
+					Hello,<a href="#">Q-Fasion Store</a>
 				</p>
 			</div>
 			<div className="ps-block__action">
