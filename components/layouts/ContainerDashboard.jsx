@@ -7,42 +7,42 @@ import WidgetUserWelcome from "~/components/shared/widgets/WidgetUserWelcome";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
 
 const ContainerDashboard = ({ children, title }) => {
-	// let titleView;
-	// if (title !== undefined) {
-	// 	titleView = process.env.title + " | " + title;
-	// } else {
-	// 	titleView = process.env.title + " | " + process.env.titleDescription;
-	// }
+  // let titleView;
+  // if (title !== undefined) {
+  // 	titleView = process.env.title + " | " + title;
+  // } else {
+  // 	titleView = process.env.title + " | " + process.env.titleDescription;
+  // }
 
-	return (
-		<div className="martfury-admin">
-			<Head>
-				<title>Dawood</title>
-			</Head>
-			<main className="ps-main">
-				<div className="ps-main__sidebar">
-					<div className="ps-sidebar">
-						<div className="ps-sidebar__top">
-							<WidgetUserWelcome />
-							{/* <WidgetEarningSidebar /> */}
-						</div>
-						<div className="ps-sidebar__content">
-							<div className="ps-sidebar__center">
-								<MenuSidebar />
-							</div>
-						</div>
-						<div className="ps-sidebar__footer">
-							<FooterCopyright />
-						</div>
-					</div>
-				</div>
-				<div className="ps-main__wrapper">
-					<HeaderDashboard />
-					{children}
-				</div>
-			</main>
-		</div>
-	);
+  return (
+    <div className="martfury-admin">
+      <Head>
+        <title>Q-Fashion Trends</title>
+      </Head>
+      <main className="ps-main">
+        <div className="ps-main__sidebar">
+          <div className="ps-sidebar">
+            <div className="ps-sidebar__top">
+              <WidgetUserWelcome />
+              {/* <WidgetEarningSidebar /> */}
+            </div>
+            <div className="ps-sidebar__content">
+              <div className="ps-sidebar__center">
+                <MenuSidebar />
+              </div>
+            </div>
+            <div className="ps-sidebar__footer">
+              <FooterCopyright />
+            </div>
+          </div>
+        </div>
+        <div className="ps-main__wrapper">
+          <HeaderDashboard />
+          {children}
+        </div>
+      </main>
+    </div>
+  );
 };
 
 export default ContainerDashboard;

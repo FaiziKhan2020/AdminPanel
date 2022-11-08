@@ -55,9 +55,12 @@ const TableOrdersItems = () => {
   };
 
   const orderDelete = (id) => {
+    console.log("oderDelete");
     let data = Axios.delete(
-      `https://dawoodddocker.herokuapp.com/api/v1/order/delete/${id}`
+      `http://localhost:8080/api/v1/order/delete/${id}`
+      // `https://dawoodddocker.herokuapp.com/api/v1/`
     );
+    window.location.reload();
   };
 
   const tableItemsView = loading ? (
@@ -66,37 +69,37 @@ const TableOrdersItems = () => {
       const menuView = (
         <Menu>
           <Menu.Item key={0}>
-            <a className='dropdown-item' href='#'>
+            <a className="dropdown-item" href="#">
               Edit
             </a>
           </Menu.Item>
           <Menu.Item key={0}>
-            <a className='dropdown-item' href='#'>
-              <i className='icon-t'></i>
+            <a className="dropdown-item" href="#">
+              <i className="icon-t"></i>
               Delete
             </a>
           </Menu.Item>
         </Menu>
       );
       if (item.payment) {
-        badgeView = <span className='ps-badge success'>Paid</span>;
+        badgeView = <span className="ps-badge success">Paid</span>;
       } else {
-        badgeView = <span className='ps-badge gray'>Unpaid</span>;
+        badgeView = <span className="ps-badge gray">Unpaid</span>;
       }
       switch (item.fullfillment) {
         case "In Progress":
           fullfillmentView = (
-            <span className='ps-fullfillment warning'>In Progress</span>
+            <span className="ps-fullfillment warning">In Progress</span>
           );
           break;
         case "Cancel":
           fullfillmentView = (
-            <span className='ps-fullfillment danger'>Cancel</span>
+            <span className="ps-fullfillment danger">Cancel</span>
           );
           break;
         default:
           fullfillmentView = (
-            <span className='ps-fullfillment success'>delivered</span>
+            <span className="ps-fullfillment success">delivered</span>
           );
           break;
       }
@@ -125,7 +128,7 @@ const TableOrdersItems = () => {
                 border: "none",
                 padding: "5px 10px",
                 borderRadius: "5px",
-                marginRight:'20px'
+                marginRight: "20px",
               }}
               onClick={() => send(item.id)}
             >
@@ -144,8 +147,8 @@ const TableOrdersItems = () => {
   );
   return (
     <>
-      <div className='table-responsive'>
-        <table className='table ps-table'>
+      <div className="table-responsive">
+        <table className="table ps-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -157,7 +160,7 @@ const TableOrdersItems = () => {
           <tbody>{tableItemsView}</tbody>
         </table>
       </div>
-      <div className='ml-auto my-4 mr-4'>
+      <div className="ml-auto my-4 mr-4">
         <Pagination
           productPerPage={productPerPage}
           totalProduct={data.length}
